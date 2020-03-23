@@ -8,6 +8,8 @@
 #include <asf.h>
 #include "mcu_os.h"
 
+static uint16_t period;
+
 void mcu_os_timer_init(void)
 {
 	//init timer for simple sheduler
@@ -17,7 +19,8 @@ void mcu_os_timer_init(void)
 	uint32_t per = sysclk_get_cpu_hz();
 	per/=1000;
 	per--;
-	tc_write_period(&TCC0, per);
+	period=per;
+	tc_write_period(&TCC0, period);
 	tc_set_overflow_interrupt_level(&TCC0, TC_INT_LVL_LO);
 	tc_write_clock_source(&TCC0, TC_CLKSEL_DIV1_gc);
 }
@@ -25,7 +28,7 @@ void mcu_os_timer_init(void)
 void mcu_os_delay_ticks(uint16_t ticks)
 {
 	uint16_t curr = TCC0.CNT;
-	uint16_t end = ticks + curr;
+	uint16_t end = (ticks + curr)%period;
 	if (end > curr)
 	{
 		while (TCC0.CNT<end){}
