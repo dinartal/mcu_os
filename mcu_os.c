@@ -2,10 +2,9 @@
  * mcu_os.c
  *
  * Created: 24.01.2020 14:34:49
- *  Author: Динар
+ *  Author: Dinar Talibullin
  */
 
-#include <asf.h>
 #include "mcu_os.h"
 
 static void (*task_p[MCU_OS_TASKS_COUNT])(void);
