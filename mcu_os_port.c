@@ -24,18 +24,3 @@ void mcu_os_timer_init(void)
 	tc_set_overflow_interrupt_level(&TCC0, TC_INT_LVL_LO);
 	tc_write_clock_source(&TCC0, TC_CLKSEL_DIV1_gc);
 }
-
-void mcu_os_delay_ticks(uint16_t ticks)
-{
-	uint16_t curr = TCC0.CNT;
-	uint16_t end = (ticks + curr)%period;
-	if (end > curr)
-	{
-		while (TCC0.CNT<end){}
-	}
-	else
-	{
-		while (TCC0.CNT>end){}
-		while (TCC0.CNT<end){}
-	}
-}

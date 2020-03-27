@@ -18,8 +18,10 @@ void mcu_os_timer_init(void);
 void one_ms_callback(void);
 void mcu_os_init(void);
 int mcu_os_add_task(void (*pt2Func)(void), uint16_t period);
-void mcu_os_delay_ticks(uint16_t ticks);
-
-
+inline void mcu_os_delay_ticks(uint16_t ticks) __attribute__((always_inline));
+inline void mcu_os_delay_ticks(uint16_t ticks)
+{
+	while (ticks--) asm(""); //1 tick = 9 CPU cycles
+}
 
 #endif /* MCU_OS_H_ */
