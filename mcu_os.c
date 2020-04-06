@@ -46,6 +46,19 @@ int mcu_os_add_task(void (*pt2Func)(void), uint16_t period)
 	}
 }
 
+int mcu_os_remove_last_task(void)
+{
+	if (task_cnt)
+	{
+		task_cnt--;
+		return task_cnt;
+	}
+	else
+	{
+		return -1;
+	}
+}
+
 void one_ms_callback(void)
 {
 	volatile static uint16_t counter = 0;
@@ -53,7 +66,7 @@ void one_ms_callback(void)
 	counter++;
 	for (int i=0; i<task_cnt; i++)
 	{
-		if (counter-task_cc[i] == task_c[i])
+		if (counter-task_cc[i] >= task_c[i])
 		{
 			task_cc[i]=counter;
 			GlobalShedulerFlags|=(1<<i);

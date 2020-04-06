@@ -18,6 +18,7 @@ void mcu_os_timer_init(void);
 void one_ms_callback(void);
 void mcu_os_init(void);
 int mcu_os_add_task(void (*pt2Func)(void), uint16_t period);
+int mcu_os_remove_last_task(void);
 inline void mcu_os_delay_ticks(uint16_t ticks) __attribute__((always_inline));
 inline void mcu_os_delay_ticks(uint16_t ticks)
 {
