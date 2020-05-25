@@ -16,6 +16,7 @@
 void mcu_os_timer_init(void);
 
 void one_ms_callback(void);
+void mcu_os_loop(void);
 void mcu_os_init(void);
 int mcu_os_add_task(void (*pt2Func)(void), uint16_t period);
 int mcu_os_remove_last_task(void);
