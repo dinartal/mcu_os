@@ -8,9 +8,9 @@
 #include "mcu_os.h"
 
 static void (*task_p[MCU_OS_TASKS_COUNT])(void);
-static uint16_t task_c[MCU_OS_TASKS_COUNT];
-static uint16_t task_cc[MCU_OS_TASKS_COUNT]={0};
-static uint8_t task_cnt=0;
+volatile static uint16_t task_c[MCU_OS_TASKS_COUNT];
+volatile static uint16_t task_cc[MCU_OS_TASKS_COUNT]={0};
+volatile static uint8_t task_cnt=0;
 volatile static uint8_t GlobalShedulerFlags = 0;
 volatile static uint16_t counter = 0;
 

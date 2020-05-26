@@ -13,7 +13,7 @@ static uint16_t period;
 void mcu_os_timer_init(void)
 {
 	//init timer for simple sheduler
-	period=600; //800Hz
+	period=599; //800Hz
 	PR.PRPF&=~(PR_TC0_bm|PR_HIRES_bm); //enable power
 	TCF0.CTRLB = 0;
 	TCF0.PER = period;
@@ -25,28 +25,3 @@ ISR(TCF0_OVF_vect)
 {
 	one_ms_callback();
 }
-
-/*
-	volatile static uint32_t counter, counter_1, counter_2, counter_3 = 0;
-	
-	counter++;
-	
-	if (counter-counter_1 == 80)
-	{
-		GlobalShedulerFlags|=(1<<0);
-		counter_1=counter;
-	}
-	
-	if (counter-counter_2 == 1)
-	{
-		GlobalShedulerFlags|=(1<<1);
-		counter_2=counter;
-	}
-
-	if (counter-counter_3 == 800)
-	{
-		GlobalShedulerFlags|=(1<<2);
-		counter_3=counter;
-	}
-	
-*/
