@@ -26,4 +26,7 @@ inline void mcu_os_delay_ticks(uint16_t ticks)
 	while (ticks--) asm(""); //1 tick = 9 CPU cycles
 }
 
+void mcu_os_sleep_init(void);
+void mcu_os_sleep(void);
+
 #endif /* MCU_OS_H_ */

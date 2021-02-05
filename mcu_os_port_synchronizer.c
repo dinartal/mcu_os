@@ -13,7 +13,7 @@ static uint16_t period;
 void mcu_os_timer_init(void)
 {
 	//init timer for simple sheduler
-	period=599; //800Hz
+	period=479; //1000Hz; 599; //800Hz
 	PR.PRPF&=~(PR_TC0_bm|PR_HIRES_bm); //enable power
 	TCF0.CTRLB = 0;
 	TCF0.PER = period;
@@ -24,4 +24,17 @@ void mcu_os_timer_init(void)
 ISR(TCF0_OVF_vect)
 {
 	one_ms_callback();
+}
+
+//sleep port:
+void mcu_os_sleep_init(void)
+{
+	//init sleep mode
+	SLEEP.CTRL = SLEEP_SMODE_IDLE_gc | (SLEEP.CTRL & ~SLEEP_SMODE_gm);
+	SLEEP.CTRL |= SLEEP_SEN_bm; //sleep enable
+}
+
+void mcu_os_sleep(void)
+{
+	sleep_enter();
 }

@@ -23,12 +23,14 @@ void mcu_os_loop(void)
 			task_p[i]();
 			GlobalShedulerFlags&=~(1<<i);
 		}
-	}	
+	}
+	mcu_os_sleep();	
 }
 
 void mcu_os_init(void)
 {
 	mcu_os_timer_init();
+	mcu_os_sleep_init();
 	while (1)
 	{
 		mcu_os_loop();
