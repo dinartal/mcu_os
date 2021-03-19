@@ -11,7 +11,7 @@
 
 #include "stdint.h"
 
-#define MCU_OS_TASKS_COUNT 8
+#define MCU_OS_TASKS_COUNT 15
 
 void mcu_os_timer_init(void);
 
