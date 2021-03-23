@@ -9,7 +9,7 @@
 
 static void (*task_p[MCU_OS_TASKS_COUNT])(void);
 volatile static uint16_t task_c[MCU_OS_TASKS_COUNT];
-volatile static uint16_t task_cc[MCU_OS_TASKS_COUNT]={0};
+volatile static uint16_t task_cc[MCU_OS_TASKS_COUNT]= {0};
 volatile static uint8_t task_cnt=0;
 volatile static uint16_t GlobalShedulerFlags = 0;
 volatile static uint16_t counter = 0;
@@ -24,7 +24,7 @@ void mcu_os_loop(void)
 			GlobalShedulerFlags&=~(1<<i);
 		}
 	}
-	mcu_os_sleep();	
+	mcu_os_sleep();
 }
 
 void mcu_os_init(void)
@@ -34,7 +34,7 @@ void mcu_os_init(void)
 	while (1)
 	{
 		mcu_os_loop();
-	}	
+	}
 }
 
 int mcu_os_add_task(void (*pt2Func)(void), uint16_t period)
@@ -76,6 +76,6 @@ void one_ms_callback(void)
 		{
 			task_cc[i]=counter;
 			GlobalShedulerFlags|=(1<<i);
-		}			
-	}	
+		}
+	}
 }

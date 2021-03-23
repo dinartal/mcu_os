@@ -3,7 +3,7 @@
  *
  * Created: 24.01.2020 14:31:48
  * Author: Dinar Talibullin
- */ 
+ */
 
 
 #ifndef MCU_OS_H_

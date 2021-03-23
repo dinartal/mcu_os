@@ -3,7 +3,7 @@
  *
  * Created: 27.01.2020 16:24:39
  * Author: Dinar Talibullin
- */ 
+ */
 
 #include <asf.h>
 #include "mcu_os.h"
